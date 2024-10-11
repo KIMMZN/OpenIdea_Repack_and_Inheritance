@@ -60,6 +60,7 @@ public class IdeaService {
 		String content = in.nextLine();
 		System.out.println("작성자입력 <작성자는 안돼요>");
 		String writer = in.nextLine();
+		
 		IdeaDTO ideadto = new IdeaDTO();
 		ideadto.setTitle(title);
 		ideadto.setContent(content);

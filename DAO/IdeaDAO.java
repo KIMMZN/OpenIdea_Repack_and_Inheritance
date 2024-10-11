@@ -58,6 +58,7 @@ public class IdeaDAO {
 			try {
 				String sql = "insert into ideabank values" +"(ideabank_seq.nextval, ?,?,?, default)";
 				PreparedStatement psmt = conn.prepareStatement(sql);
+				
 				psmt.setString(1, ideadto.getTitle());
 				psmt.setString(2, ideadto.getContent());
 				psmt.setString(3, ideadto.getWriter());
@@ -77,33 +78,7 @@ public class IdeaDAO {
 			System.out.println("데이터베이스 개선실패");
 		}
 	}
-	public ArrayList<IdeaDTO> selectAll() {
-		ArrayList<IdeaDTO> ilist = new ArrayList<>();
-		if(conn()) {
-			try {
-				String sql = "select * from ideabank";
-				PreparedStatement psmt = conn.prepareStatement(sql);
-				ResultSet rs = psmt.executeQuery();
-				while(rs.next()) {
-					IdeaDTO iTemp = new IdeaDTO();
-					iTemp.setTitle(rs.getString("title"));
-					iTemp.setNum(rs.getInt("num"));
-					iTemp.setContent(rs.getString("content"));
-					iTemp.setWriter(rs.getString("writer"));
-					iTemp.setIndate(rs.getString("indate"));
-					ilist.add(iTemp);
-				}
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			
-		}else {
-			System.out.println("실패");
-		}
-		return ilist;
-	}
+	
 	public void delete(int delId) {
 		  if(conn()) {
 			  try {
